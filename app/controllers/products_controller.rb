@@ -27,8 +27,8 @@ class ProductsController < ApplicationController
   def index
     # Product.where accesses model layer and stores result in an instance variable
     # which is passed to the view, in this case it is all the products created by current user
-    products = Product.where("user_id = ?", current_user)
-    @products = products.order("#{sort_column} #{sort_direction}")
+    #products = Product.where("user_id = ?", current_user)
+    #@products = products.order("#{sort_column} #{sort_direction}")
 
     # render 'products/index' happens by default at end of method
   end

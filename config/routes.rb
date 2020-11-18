@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/search' => 'searches#search', as: 'search_search'
   #root 'allergens#index'
   root 'products#new'
+  #root 'products#index'
 
 =begin
   #When we use resources routes, we are mapping the browser 
