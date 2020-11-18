@@ -1,0 +1,17 @@
+<% substances = product_allergen.get_substances %>
+<div id="panel-allergen-details" class="col-md-12">
+  <div id="panel">
+    <div id="panel-heading">
+      <span class="badge"><h4><%= product_allergen.category %></h4></span>
+    </div>
+    <div id="panel-body">
+      <% substances.each do |substance| %>
+        <% if (substance.upcase.include?(search_item.upcase) || search_item.upcase.include?(substance.upcase)) %> 
+          <div class="substances text-color-not-ok">
+            <%= highlight(substance, search_item) %> 
+          </div> 
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

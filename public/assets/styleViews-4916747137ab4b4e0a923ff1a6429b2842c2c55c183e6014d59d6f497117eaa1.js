@@ -1,0 +1,1 @@
+function handleShow(){}function formStyle(){document.getElementById("form-input").style.height="50px",document.getElementById("form-input").style.fontSize="18pt",document.getElementById("form-textarea").style.height="250px",document.getElementById("form-textarea").style.fontSize="18pt"}

@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-lg-5 col-sm-offset-5">
+      <fieldset class="custom-well">  
+        <h3 class='profile-label'>First name</h3>
+        <div class='profile-box'><%= @current_user.first_name %></div>
+
+        <h3 class='profile-label'>Last name</h3>
+        <div class='profile-box'><%= @current_user.last_name %></div>
+
+        <h3 class='profile-label'>Address</h3>
+        <div class='profile-box'><%= @current_user.address %></div>
+
+        <h3 class='profile-label'>Phone</h3>
+        <div class='profile-box'><%= @current_user.phone %></div>
+       
+        <h3 class='profile-label'>About</h3>
+        <div class='profile-text-box'><%= @current_user.about %></div>
+
+        <br>
+        <button type="button" class="actions btn btn-my-primary btn-lg"><%= link_to "Edit Profile", edit_profile_path(@current_user.id)  %></button>
+      </fieldset>
+    </div>
+</div>
+

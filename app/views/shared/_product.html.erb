@@ -1,0 +1,23 @@
+<!-- if invoked from search.html.erb, then there will be a search_item passed in -->
+<% product_reactions = product.causes_reaction %>
+
+<!-- if there is no search_item passed in -->
+<% if product.causes_reaction.any? && search_item.blank? %> 
+  <% search_item = product_reactions.select(:reactive_ingredient).distinct.pluck(:reactive_ingredient) %> 
+<% end %>
+
+<tr class = "<%= product_reactions.empty? ? 'text-color-ok' : 'text-color-not-ok' %>">
+  <td>
+    <%= render partial: 'shared/product_actions', :locals => {:id=> product.id}  %>
+    <a style="text-decoration:none; color:currentColor;" href="/products/<%= product.id %>"  >
+      <%= highlight(product.name, search_item) %>
+    </a>
+  </td>
+  <td>
+    <!-- 
+    <a style="text-decoration:none; color:currentColor;" href="/products/<%= product.id %>"  >
+     -->
+    <%= highlight(product.ingredients, search_item) %>
+    <!-- </a> -->
+  </td>
+</tr>

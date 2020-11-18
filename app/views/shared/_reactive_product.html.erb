@@ -1,0 +1,17 @@
+<% reactions_to_product = get_all_product_reactions(reactive_product) %>
+
+<tr class="text-color-not-ok">
+  <td>
+    <%= render partial: 'shared/product_actions', :locals => {:id=>Product.find(reactive_product).id}  %>
+    <%= Product.find(reactive_product).name %>
+  </td>
+  <td>
+    <%= highlight(get_reactive_ingredients(reactions_to_product), search_item) %>
+  </td>
+  <td>
+    <%= highlight(get_allergen_categories(reactions_to_product), search_item) %>
+  </td>
+  <td>
+    <%= highlight(get_reactive_substances(reactions_to_product), search_item) %>
+  </td>
+</tr>

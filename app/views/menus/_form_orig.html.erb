@@ -1,0 +1,22 @@
+<%= form_tag menus_path do %>
+  <%= submit_tag "Submit Selections", class: "center-btn btn btn-xlarge btn-my-primary"%>
+  <br>
+  <% allergen_groups().each do |key, value| %>
+    <div class='menu-panel'>
+      <div class='center-heading label-color'>
+        <%= key %>
+      </div>
+      <% grouping = @menu.where(group: value) %>
+      <br>
+      <ol>
+        <% grouping.each do |allergen| %>
+          <label class="menu-row">
+            <%= allergen.category %>
+            <%= check_box_tag 'allergen_id[]', allergen.id, @selected_categories.include?(allergen.category) %>
+            <span class="checkmark"><li></li></span>
+          </label>
+        <% end %>
+      </ol>
+    </div>
+  <% end %>
+<% end %>

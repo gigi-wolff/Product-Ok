@@ -1,0 +1,19 @@
+<h1 class="center-heading label-color">Products</h1>
+<div class='row'>
+  <div class="col-lg-10 col-lg-offset-1">
+    <table class="table">
+      <tr colspan="2">
+        <th><%= sort_link "name" %></th>
+        <th class='center'>Ingredients</th>
+      </tr>
+      <%= render partial: 'shared/product', collection: @products, :locals => {index_view: true, :search_item=>""}  %>
+    </table>
+
+    <div class="center product-actions">
+      <%= link_to "Add Product", new_product_path, class: "btn btn-xlarge btn-my-primary" %>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+

@@ -1,0 +1,55 @@
+<h1 class="center-heading label-color"><strong>Search Results:  <%= @search_item %></strong></h1>
+<div class='row'>
+  <div class="col-lg-10 col-lg-offset-1">
+    <% if @search_item.blank? %>
+        <div class="col-xs-8 col-xs-offset-2">
+          <div class="alert-danger">
+            <h2 class="center">
+              Error: Empty Search Field
+            </h2>
+        </div>
+      </div>
+    <% else %>
+      <% allergens = search_all_allergens(@search_item, @user_id) %>
+      <% products = search_all_products(@search_item, @user_id) %>
+      <% reactive_products = search_reactions_for(@search_item, @user_id) %>
+      <% unless products.empty? %>
+        <table class="table">
+          <tr colspan="2">
+            <th>Product</th>
+            <th class='center'>Ingredients</th>
+          </tr>
+          <%= render partial: "shared/product", collection: products, :locals => {:index_view => false, search_item: @search_item}  %>
+        </table>
+      <% end %>
+      <% unless reactive_products.empty? %>
+        <table class="table">
+          <tr colspan="4">
+            <th class='center'>Products:</th>
+            <th class='center'>Allergic to Ingredients:</th>
+            <th class='center'>Allergen Categories:</th>
+            <th class='center'>Substances in Category:</th>
+          </tr>
+          <tr>
+            <%= render partial: "shared/reactive_product", collection:reactive_products, :locals => {search_item: @search_item}%>
+          </tr>
+        </table>
+      <% end %>
+      <% unless allergens.empty? %>
+          <div class="row">
+            <%= render partial: "shared/allergen", collection: allergens, :locals => {search_item: @search_item}  %>
+          </div>
+      <% end %>
+      <!-- Search item not found in Product and Allergen db -->
+      <% if allergens.empty? && products.empty? && reactive_products.empty? %>
+        <div class="col-xs-8 col-xs-offset-2">
+          <div class="alert-success">
+            <h2 class="center">
+              <%= @search_item %> Not Found in Allergens or Product List
+            </h2>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

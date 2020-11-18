@@ -1,0 +1,32 @@
+<!-- When a partial is called with a pluralized collection (ie: collection: @allergens), then the individual instances of the partial have access to the member of the collection being rendered via a variable named after the partial (allergen). In general 
+if the partial is called with using "collection: somenames" and partial's name is "some_partial" then to access an individual instance of "somenames" would be "some_partial"-->
+<% substances = allergen.get_substances %>
+<div id="panel-allergen-details" class="col-md-3">
+  <!-- Panel displaying allergen and substances -->
+  <div id="panel">
+    <div id="panel-heading">
+      <span class="badge"><h4><%= allergen.category %></h4></span>
+      <div class="actions">
+        <a class="edit-icon" href="/allergens/<%= allergen.id %>/edit">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+        <a class="delete-icon" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/allergens/<%= allergen.id %>">
+          <span class="glyphicon glyphicon-trash"></span>
+        </a>
+        <a class="show-icon" href="/allergens/<%= allergen.id %>">
+          <span class="glyphicon glyphicon-eye-open"></span>
+        </a>
+      </div>
+    </div>
+    <div id="panel-body">
+      <% substances.each do |substance| %>
+        <% if substance.upcase.include?(search_item.upcase)%> 
+          <div class="substances text-color-not-ok">
+            <%= highlight(substance, search_item) %> 
+          </div> 
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<!-- end Panel display -->
+</div>

@@ -1,0 +1,14 @@
+<h1 class="center-heading label-color">Products Containing Allergens</h1>
+<div class='row'>
+  <div class="col-lg-10 col-lg-offset-1">
+    <table class="table">
+      <tr colspan="4">
+        <th class='center'>Products:</th>
+        <th class='center'>Allergic to Ingredients:</th>
+        <th class='center'>Allergen:</th>
+        <th class='center'>Substances:</th>
+      </tr>
+      <%= render partial: "shared/reactive_product", collection:@reactive_products, :locals => {search_item: ""} %>
+    </table>
+  </div>
+</div>

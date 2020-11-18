@@ -1,0 +1,65 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header navbar-left">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <%= link_to "Product-Ok", root_path, class: "navbar-brand", id:"logo" %>
+    </div>
+    <% if user_signed_in? %>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav nav-tabs nav-justified">
+          <!-- Dropdown for Allergens -->
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              <strong>Allergens <span class="caret"></span></strong>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="/allergens">List My Allergens</a></li>
+              <li><a href="/allergens/new">Add an Allergen to my List</a></li>
+              <li><a href="/menus">Select Allergens from Menu</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a data-confirm="Are you sure you want to delete all Allergens?" rel="nofollow" data-method="delete" href="/allergens">Delete <strong>ALL</strong> My Allergens</a></li>
+            </ul>
+          </li>
+          <!--  Search --> 
+          <li role="presentation">
+            <div  class = "btn-group">
+              <%= form_tag(search_search_path, :method => "get",class: 'navbar-form') do %>  
+                <div class="input-group">  
+                  <%= text_field_tag :search, params[:search], placeholder: "Search...", class: "form-control", size: 60 %>  
+                  <div class="input-group-btn">  
+                    <%= button_tag "Search", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil %>
+                  </div>  
+                </div> 
+              <% end %>
+            </div>
+          </li>
+          <!-- Profile and Log Out buttons -->
+          <li role="presentation">
+            <div class="text-right">
+              <%= link_to profile_path(current_user.id), class: "btn-profile" do %>
+                  <span class="glyphicon glyphicon-user"></span>
+              <% end %>
+              <%= link_to destroy_user_session_path, class: "btn-group btn btn-danger btn-lg btn-logout", method: :delete do %>Log out 
+                <span class="glyphicon glyphicon-log-out"></span>
+              <% end %>
+            </div>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    <% end %>
+  </div><!-- /.container-fluid -->
+</nav>
+<% if user_signed_in? %>
+  <div id="add-product">
+    <a href="/products/new">
+      <span class="glyphicon glyphicon-plus"></span> Product 
+    </a>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<body>
+  <h1 class="center-heading label-color"><strong>Allergens</strong></h1>
+  <%= render partial: "shared/allergen", collection: @allergens, :locals => {search_item: ""} %>
+  <br>
+  <div class="center">
+    <%= link_to "Add New Allergen", new_allergen_path, class: "btn btn-xlarge btn-my-primary" %>
+    <%= link_to "Select From Allergens Menu", menus_path, class: "btn btn-xlarge btn-my-primary" %>
+  </div>
+  <br>
+</body>

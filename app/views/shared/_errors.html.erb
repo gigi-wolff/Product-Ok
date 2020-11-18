@@ -1,0 +1,24 @@
+<!-- Rails validations are triggered when the data submissions try to hit the database.The errors are saved on the model object. When there are validation errors, they are saved to the object.errors. We display the validation messages by referencing the object.errors.full_messages method like below. By using the full_messages method, the errors are displayed in a nice, readable sentence format. -->
+<!-- Here, obj must be an active record object. -->
+
+<% if obj.errors.any? %>
+  <div class="row">
+    <!-- <div class="col-xs-8 col-xs-offset-2"> -->
+      <div class="col-lg-6 col-lg-offset-3">
+      <div class="alert-error">
+        <h2 class="center">
+          <%= pluralize(obj.errors.count, "error") %> prohibited this product from being saved:
+        </h2>
+        <ol class="center">
+          <% obj.errors.full_messages.each do |msg| %>
+            <div>
+            <li>
+              <%= msg %>
+            </li>
+          </div>
+          <% end %>
+        </ol>
+      </div>
+    </div>
+  </div>
+<% end %>
