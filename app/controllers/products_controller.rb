@@ -31,6 +31,7 @@ class ProductsController < ApplicationController
     #@products = products.order("#{sort_column} #{sort_direction}")
 
     # render 'products/index' happens by default at end of method
+    redirect_to new_product_path
   end
 
   # GET '/products/new'
