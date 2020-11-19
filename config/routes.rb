@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   #/search is the route, it points to (=>) searches#search (controller_name#action  where action is a function) 
   get '/search' => 'searches#search', as: 'search_search'
   #root 'allergens#index'
-  root 'products#new'
-  #root 'products#index'
+  #root 'products#new'
+  root 'products#index'
 
 =begin
   #When we use resources routes, we are mapping the browser 
